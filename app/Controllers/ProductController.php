@@ -13,6 +13,11 @@ class ProductController extends BaseController {
         return view('product', $data); //kirim data ke view
     }
 
+    public function getDataProductOnly(){
+        $model = new Product();
+        $data['product'] = $model->getDataProduct();
+    }
+
     // Menyimpan data input
     public function inputNameProduct()
     {
