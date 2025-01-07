@@ -1,0 +1,170 @@
+ERROR - 2025-01-06 21:25:13 --> mysqli_sql_exception: Table 'warehouse_management.product_list' doesn't exist in D:\Jurusan\Semester 5\warehousemanagement\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 D:\Jurusan\Semester 5\warehousemanagement\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 D:\Jurusan\Semester 5\warehousemanagement\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 D:\Jurusan\Semester 5\warehousemanagement\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 D:\Jurusan\Semester 5\warehousemanagement\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 D:\Jurusan\Semester 5\warehousemanagement\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\Jurusan\Semester 5\warehousemanagement\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 D:\Jurusan\Semester 5\warehousemanagement\app\Models\Product.php(12): CodeIgniter\BaseModel->findAll()
+#7 D:\Jurusan\Semester 5\warehousemanagement\app\Controllers\ProductController.php(12): App\Models\Product->getDataProduct()
+#8 D:\Jurusan\Semester 5\warehousemanagement\system\CodeIgniter.php(933): App\Controllers\ProductController->index()
+#9 D:\Jurusan\Semester 5\warehousemanagement\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProductController))
+#10 D:\Jurusan\Semester 5\warehousemanagement\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\Jurusan\Semester 5\warehousemanagement\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 D:\Jurusan\Semester 5\warehousemanagement\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 D:\Jurusan\Semester 5\warehousemanagement\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 D:\Jurusan\Semester 5\warehousemanagement\system\rewrite.php(44): require_once('D:\\Jurusan\\Seme...')
+#15 {main}
+CRITICAL - 2025-01-06 21:25:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'warehouse_management.product_list' doesn't exist
+[Method: GET, Route: product]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `product_list`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\Product.php(12): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\ProductController.php(12): App\Models\Product->getDataProduct()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ProductController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProductController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 21:25:13 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'warehouse_management.product_list' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `product_list`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `product_list`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `product_list`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\Product.php(12): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\ProductController.php(12): App\Models\Product->getDataProduct()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ProductController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProductController))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 21:25:13 --> [Caused by] mysqli_sql_exception: Table 'warehouse_management.product_list' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `product_list`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `product_list`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `product_list`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `product_list`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\Product.php(12): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\ProductController.php(12): App\Models\Product->getDataProduct()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ProductController->index()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProductController))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 22:26:23 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "employees/index.php"
+[Method: GET, Route: employee]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('employees/index.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('employees/index', [], true)
+ 3 APPPATH\Controllers\EmployeeController.php(16): view('employees/index', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\EmployeeController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\EmployeeController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 22:27:30 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "employees.php"
+[Method: GET, Route: employee]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('employees.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('employees', [], true)
+ 3 APPPATH\Controllers\EmployeeController.php(16): view('employees', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\EmployeeController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\EmployeeController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 22:27:31 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "employees.php"
+[Method: GET, Route: employee]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('employees.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('employees', [], true)
+ 3 APPPATH\Controllers\EmployeeController.php(16): view('employees', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\EmployeeController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\EmployeeController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 22:35:10 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "employees.php"
+[Method: GET, Route: employee]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('employees.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('employees', [], true)
+ 3 APPPATH\Controllers\EmployeeController.php(20): view('employees', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\EmployeeController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\EmployeeController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 22:35:12 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "employees.php"
+[Method: GET, Route: employee]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('employees.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('employees', [], true)
+ 3 APPPATH\Controllers\EmployeeController.php(20): view('employees', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\EmployeeController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\EmployeeController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+CRITICAL - 2025-01-06 22:35:54 --> ErrorException: Undefined variable $employees
+[Method: GET, Route: employee]
+in APPPATH\Views\employee.php on line 74.
+ 1 APPPATH\Views\employee.php(74): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $employees', 'D:\\Jurusan\\Semester 5\\warehousemanagement\\app\\Views\\employee.php', 74)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\Jurusan\\Semester 5\\warehousemanagement\\app\\Views\\employee.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('employee', [], true)
+ 5 APPPATH\Controllers\EmployeeController.php(20): view('employee', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\EmployeeController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\EmployeeController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+DEBUG - 2025-01-06 22:56:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-06 22:57:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-06 23:01:54 --> BadMethodCallException: Call to undefined method App\Models\Employee::getEmployeeWithAssignments
+[Method: GET, Route: employee]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\EmployeeController.php(22): CodeIgniter\Model->__call('getEmployeeWithAssignments', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\EmployeeController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\EmployeeController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\Jurusan\\Semester 5\\warehousemanagement\\public\\index.php')
+DEBUG - 2025-01-06 23:02:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-06 23:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-01-06 23:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
