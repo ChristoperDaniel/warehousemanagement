@@ -37,7 +37,8 @@ class ProductController extends BaseController {
         $model->addProduct([
             'name_product' => $name_product,
             'category_product' => $category_product,
-            'quantity_product' => $quantity_product
+            'quantity_product' => $quantity_product,
+            'restock_product' => "No"
         ]);
 
         // Redirect kembali ke halaman utama
@@ -56,6 +57,15 @@ class ProductController extends BaseController {
     public function deleteProduct($id_product = null) {
         $model = new Product();
         $model->deleteProduct($id_product);
+
+        return redirect()->to('/product');
+    }
+
+    public function updateRestockStatus($id_product = null) {
+        $restock_product = $this->request->getPost('restock_product');
+
+        $model = new Product();
+        $model->updateRestockStatus($id_product, $restock_product);
 
         return redirect()->to('/product');
     }
