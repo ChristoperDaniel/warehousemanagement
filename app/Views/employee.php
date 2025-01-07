@@ -8,19 +8,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
+            --primary-color: #1a2980;
+            --secondary-color: #26d0ce;
             --accent-color: #e74c3c;
             --light-bg: #f8f9fa;
         }
-
+        
         body {
             background-color: #f0f2f5;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .navbar {
-            background-color: var(--primary-color);
+            background: linear-gradient(120deg, #1a2980 0%, #26d0ce 100%);
             padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }

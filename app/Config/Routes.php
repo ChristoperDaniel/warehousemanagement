@@ -19,3 +19,7 @@ $routes->get('/employee/getDataEmployeeOnly', 'EmployeeController::getDataEmploy
 $routes->post('/employee/inputDataEmployee', 'EmployeeController::inputDataEmployee');
 $routes->post('/employee/updateEmployee', 'EmployeeController::updateEmployee');
 $routes->post('/employee/deleteEmployee', 'EmployeeController::deleteEmployee');
+
+$routes->get('/login', 'LoginController::index');
+$routes->get('/logout', 'LoginController::logout');
+$routes->post('/login_action', 'LoginController::login_action');
