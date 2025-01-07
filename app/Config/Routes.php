@@ -15,7 +15,7 @@ $routes->post('/product/updateRestockStatus/(:num)', 'productController::updateR
 $routes->get('/product/deleteProduct/(:num)', 'productController::deleteProduct/$1');
 
 $routes->get('/employee', 'EmployeeController::index');
-$routes->get('/product/getDataEmployeeOnly', 'EmployeeController::getDataEmployeeOnly');
+$routes->get('/employee/getDataEmployeeOnly', 'EmployeeController::getDataEmployeeOnly');
 $routes->post('/employee/inputDataEmployee', 'EmployeeController::inputDataEmployee');
 $routes->post('/employee/updateEmployee', 'EmployeeController::updateEmployee');
 $routes->post('/employee/deleteEmployee', 'EmployeeController::deleteEmployee');
