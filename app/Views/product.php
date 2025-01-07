@@ -6,36 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <style>
-        table { border-collapse: collapse; }
-        th, td { border: 1px solid black; padding: 5px; }
-        .btn { 
-            padding: 5px 10px;
-            margin: 0 2px;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            padding: 8px 12px;
             border: none;
-            border-radius: 3px;
+            border-radius: 4px;
             cursor: pointer;
-            text-decoration: none;
-            font-family: 'Courier New', monospace;
-            background-color: #535353;
             color: white;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .btn-add {
+            background-color: #2ecc71;
         }
         .btn-edit {
-            background-color: #0c6ff6;
-            color: white;
+            background-color: #3498db;
         }
         .btn-save {
-            background-color: #229708;
-            color: white;
+            background-color: #27ae60;
         }
-
         .btn-cancel {
-            background-color: #b00404;
-            color: white;
+            background-color: #e74c3c;
         }
-
         .btn-delete {
-            background-color: #b00404;
-            color: white;
+            background-color: #e74c3c;
+        }
+        .btn:hover {
+            opacity: 0.8;
         }
         .edit-form {
             display: none;
@@ -43,7 +91,12 @@
         .edit-form.active {
             display: inline;
         }
+        .edit-form input[type="number"] {
+            width: 80px;
+            margin-right: 5px;
+        }
     </style>
+    
     <script>
         function showEditForm(id) {
             // Hide all edit forms first
@@ -75,7 +128,7 @@
         <label for="quantity_product">Quantity Product:</label>
         <input type="number" name="quantity_product" id="quantity_product" required>
         <br>
-        <button type="submit" class="btn">Add</button>
+        <button type="submit" class="btn btn-add">Add</button>
     </form>
 
     <h2>Data Product</h2>
@@ -85,6 +138,7 @@
             <th>Name</th>
             <th>Category</th>
             <th>Quantity</th>
+            <th>Restock</th>
             <th>Actions</th>
         </tr>
         <?php foreach ($product as $product_item): ?>
@@ -101,6 +155,7 @@
                     <button type="button" class="btn btn-cancel" onclick="cancelEdit(<?= $product_item['id_product'] ?>)">Cancel</button>
                 </form>
             </td>
+            <td><?= $product_item['restock_product'] ?></td>
             <td>
                 <button class="btn btn-edit" onclick="showEditForm(<?= $product_item['id_product'] ?>)">Edit</button>
                 <a href="<?= base_url('/product/deleteProduct/' . $product_item['id_product']) ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-delete">Delete</a>

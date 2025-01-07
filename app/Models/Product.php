@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class Product extends Model {
     protected $table = 'product_list';
     protected $primaryKey = 'id_product';
-    protected $allowedFields = ['name_product', 'category_product', 'quantity_product'];
+    protected $allowedFields = ['name_product', 'category_product', 'quantity_product', 'restock_product'];
 
     public function getDataProduct() {
         return $this->findAll(); //mengambil semua data dari tabel
@@ -25,5 +25,11 @@ class Product extends Model {
     public function deleteProduct($id_product) {
         return $this->delete($id_product); //gunakan update untuk menghapus data 
     }
+
+    public function updateRestockStatus($id_product, $restock_product) {
+        $data = ['restock_product' => $restock_product];
+        return $this->update($id_product, $data); //gunakan update untuk mengubah data 
+    }
+
 }
 
