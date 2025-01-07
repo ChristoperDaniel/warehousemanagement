@@ -31,6 +31,11 @@
             font-size: 1.5rem;
         }
 
+        .btn-outline-light:hover {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        
         .card {
             border: none;
             border-radius: 10px;
@@ -125,6 +130,12 @@
                 <i class="fas fa-users me-2"></i>
                 Employee Management System
             </span>
+            <div class="ms-auto">
+                <a href="/logout" class="btn btn-outline-light">
+                    <i class="fas fa-sign-out-alt me-2"></i>
+                    Logout
+                </a>
+            </div>
         </div>
     </nav>
 

@@ -8,6 +8,9 @@ class EmployeeController extends BaseController
 {
     public function index()
     {
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/login');
+        }
         $model = new Employee();
         $data['employee'] = $model->getDataEmployee();
         return view('employee', $data);
