@@ -29,21 +29,50 @@ class EmployeeController extends BaseController
         $department = $this->request->getPost('department');
         $status = $this->request->getPost('status');
         $hire_date = $this->request->getPost('hire_date');
-        $job_title = $this->request->getPost('job_title');
+        $role = $this->request->getPost('role');
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return redirect()->back()->with('error', 'Invalid email format');
+        }
+        
         $model = new Employee();
-        $model->addEmployee([
-            'name' => $name,
-            'email' => $email,
-            'phone' => $phone,
-            'department' => $department,
-            'status' => $status,
-            'hire_date' => $hire_date,
-            'job_title' => $job_title,
-        ]);
+        $existingEmployee = $model->where('email', $email)->first();
 
-        // Redirect kembali ke halaman utama
-        return redirect()->to('/employee');
+        if ($existingEmployee) {
+            return redirect()->back()->with('error', 'Email already exists');
+        }
+
+        // Jika validasi berhasil, masukkan data ke database
+        try {
+            $model->addEmployee([
+                'name' => $name,
+                'email' => $email,
+                'phone' => $phone,
+                'department' => $department,
+                'status' => $status,
+                'hire_date' => $hire_date,
+                'role' => $role,
+            ]);
+
+            // Redirect kembali ke halaman utama dengan pesan sukses
+            return redirect()->to('/employee')->with('message', 'Employee added successfully');
+        } catch (\Exception $e) {
+            // Tangani jika terjadi error saat penyimpanan data
+            return redirect()->back()->with('error', 'Failed to add employee: ' . $e->getMessage());
+        }
+        // $model = new Employee();
+        // $model->addEmployee([
+        //     'name' => $name,
+        //     'email' => $email,
+        //     'phone' => $phone,
+        //     'department' => $department,
+        //     'status' => $status,
+        //     'hire_date' => $hire_date,
+        //     'role' => $role,
+        // ]);
+        
+        // // Redirect kembali ke halaman utama
+        // return redirect()->to('/employee')->with('message', 'Employee added successfully');
     }
 
     public function updateEmployee()

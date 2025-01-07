@@ -9,7 +9,7 @@ class Employee extends Model
     protected $table = 'employee';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'name', 'email', 'phone', 'department', 'status', 'hire_date', 'job_title', 
+        'name', 'email', 'phone', 'department', 'status', 'hire_date', 'role', 
     ];
     protected $useTimestamps = true; // Untuk created_at dan updated_at otomatis
 

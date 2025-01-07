@@ -35,7 +35,7 @@
             background-color: #e74c3c;
             border-color: #e74c3c;
         }
-        
+
         .card {
             border: none;
             border-radius: 10px;
@@ -89,9 +89,80 @@
             padding: 1rem;
             font-weight: 600;
             color: var(--primary-color);
+            text-align: center; /* Center align header */
+            vertical-align: middle;
+        }
+        .table tbody td {
+            text-align: center; /* Center align all table cells */
+            vertical-align: middle;
+            padding: 1rem;
+        }
+
+        /* Adjust checkbox column */
+        .table th:first-child,
+        .table td:first-child {
+            width: 50px;
+            text-align: center;
+        }
+
+        /* Name column styling */
+        .table td .user-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Department Badge Colors */
+        .badge.dept-food {
+            background-color: #FF6B6B !important;
+            color: white;
+        }
+        .badge.dept-drink {
+            background-color: #4ECDC4 !important;
+            color: white;
+        }
+        .badge.dept-fashion {
+            background-color: #9B59B6 !important;
+            color: white;
+        }
+        .badge.dept-tools {
+            background-color: #3498DB !important;
+            color: white;
+        }
+
+        /* Status Badge Colors */
+        .badge.status-active {
+            background-color: #2ECC71 !important;
+            color: white;
+        }
+        .badge.status-on-leave {
+            background-color: #F1C40F !important;
+            color: white;
+        }
+        .badge.status-inactive {
+            background-color: #E74C3C !important;
+            color: white;
+        }
+
+        /* Role Badge Colors */
+        .badge.role-manager {
+            background-color: #8E44AD !important;
+            color: white;
+        }
+        .badge.role-admin {
+            background-color: #2C3E50 !important;
+            color: white;
+        }
+        .badge.role-staff {
+            background-color: #16A085 !important;
+            color: white;
         }
 
         .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 0.5rem 1rem;
             border-radius: 6px;
             font-weight: 500;
@@ -99,6 +170,7 @@
 
         .action-buttons {
             display: flex;
+            justify-content: center;
             gap: 0.5rem;
         }
 
@@ -128,7 +200,7 @@
         <div class="container">
             <span class="navbar-brand">
                 <i class="fas fa-users me-2"></i>
-                Employee Management System
+                Employee Information
             </span>
             <div class="ms-auto">
                 <a href="/logout" class="btn btn-outline-light">
@@ -168,7 +240,7 @@
             <div class="col-md-3">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($employee, function($emp) { return $emp['status'] === 'Active'; })) ?>
+                        <?= count(array_filter($employee, function($emp) { return strtolower(str_replace(' ', '-', $emp['status'])) === 'active'; })) ?>
                     </div>
                     <div class="stats-label">Active Employees</div>
                 </div>
@@ -176,7 +248,7 @@
             <div class="col-md-3">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($employee, function($emp) { return $emp['status'] === 'On Leave'; })) ?>
+                        <?= count(array_filter($employee, function($emp) { return strtolower(str_replace(' ', '-', $emp['status'])) === 'on-leave'; })) ?>
                     </div>
                     <div class="stats-label">On Leave</div>
                 </div>
@@ -184,7 +256,7 @@
             <div class="col-md-3">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($employee, function($emp) { return $emp['status'] === 'Inactive'; })) ?>
+                        <?= count(array_filter($employee, function($emp) { return strtolower(str_replace(' ', '-', $emp['status'])) === 'inactive'; })) ?>
                     </div>
                     <div class="stats-label">Inactive</div>
                 </div>
@@ -238,8 +310,8 @@
                             </label>
                             <select class="form-select" id="status" name="status" required>
                                 <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
                                 <option value="On Leave">On Leave</option>
+                                <option value="Inactive">Inactive</option>
                             </select>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -249,10 +321,15 @@
                             <input type="date" class="form-control" id="hire_date" name="hire_date" required>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="job_title" class="form-label">
-                                <i class="fas fa-briefcase me-2"></i>Job Title
+                            <label for="role" class="form-label">
+                                <i class="fas fa-briefcase me-2"></i>Role
                             </label>
-                            <input type="text" class="form-control" id="job_title" name="job_title" required>
+                            <select class="form-select" id="role" name="role" required>
+                                <option value="">Select Role</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Staff">Staff</option>
+                            </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">
@@ -273,8 +350,8 @@
                     <form action="<?= base_url('employee/updateEmployee') ?>" method="post" class="d-inline" id="updateForm">
                         <select class="form-select d-inline-block w-auto me-2" name="updateStatus">
                             <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
                             <option value="On Leave">On Leave</option>
+                            <option value="Inactive">Inactive</option>
                         </select>
                         <button type="submit" class="btn btn-warning" id="updateBtn" disabled>
                             <i class="fas fa-sync-alt me-2"></i>Update Status
@@ -294,7 +371,7 @@
                                 <th>Department</th>
                                 <th>Status</th>
                                 <th>Hire Date</th>
-                                <th>Job Title</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -312,19 +389,22 @@
                                 <td><?= esc($emp['email']) ?></td>
                                 <td><?= esc($emp['phone']) ?></td>
                                 <td>
-                                    <span class="badge bg-info">
+                                    <span class="badge dept-<?= strtolower($emp['department']) ?>">
                                         <?= esc($emp['department']) ?>
                                     </span>
                                 </td>
                                 <td>
-                                    <span class="badge bg-<?= $emp['status'] === 'Active' ? 'success' : 
-                                        ($emp['status'] === 'Inactive' ? 'danger' : 'warning') ?>">
+                                    <span class="badge status-<?= strtolower(str_replace(' ', '-', $emp['status'])) ?>">
                                         <i class="fas fa-circle me-1"></i>
                                         <?= esc($emp['status']) ?>
                                     </span>
                                 </td>
                                 <td><?= esc($emp['hire_date']) ?></td>
-                                <td><?= esc($emp['job_title']) ?></td>
+                                <td>
+                                    <span class="badge role-<?= strtolower($emp['role']) ?>">
+                                        <?= esc($emp['role']) ?>
+                                    </span>
+                                </td>
                                 <td>
                                     <form action="<?= base_url('employee/deleteEmployee') ?>" method="post" class="d-inline">
                                         <input type="hidden" name="id[]" value="<?= $emp['id'] ?>">
