@@ -13,6 +13,11 @@ class EmployeeController extends BaseController
         return view('employee', $data);
     }
 
+    public function getDataEmployeeOnly(){
+        $model = new Employee();
+        $data['employee'] = $model->getDataEmployee();
+    }
+
     public function inputDataEmployee()
     {
         $name = $this->request->getPost('name');
