@@ -23,3 +23,6 @@ $routes->post('/employee/deleteEmployee', 'EmployeeController::deleteEmployee');
 $routes->get('/login', 'LoginController::index');
 $routes->get('/logout', 'LoginController::logout');
 $routes->post('/login_action', 'LoginController::login_action');
+
+$routes->get('/filter/productemployee', 'ProductEmployeeFilterController::filterByCategory');
+$routes->get('/product-employee-filter', 'ProductEmployeeFilterController::index');

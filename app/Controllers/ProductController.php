@@ -16,6 +16,7 @@ class ProductController extends BaseController {
     public function getDataProductOnly(){
         $model = new Product();
         $data['product'] = $model->getDataProduct();
+        return $this->response->setJSON($data);
     }
 
     // Menyimpan data input

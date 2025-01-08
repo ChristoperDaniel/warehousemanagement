@@ -19,6 +19,7 @@ class EmployeeController extends BaseController
     public function getDataEmployeeOnly(){
         $model = new Employee();
         $data['employee'] = $model->getDataEmployee();
+        return $this->response->setJSON($data);
     }
 
     public function inputDataEmployee()
