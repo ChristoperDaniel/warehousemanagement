@@ -421,7 +421,7 @@
                                 <?php endforeach; ?>
                             <?php else : ?>
                                 <tr>
-                                    <td colspan="6" class="text-center">No jobs available</td>
+                                    <td colspan="9" class="text-center">No employee information found</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>

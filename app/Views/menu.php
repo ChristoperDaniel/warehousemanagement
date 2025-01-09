@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Warehouse Management</title>
     <style>
         * {
             margin: 0;

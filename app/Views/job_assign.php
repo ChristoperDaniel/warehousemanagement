@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance</title>
+    <title>Job Assignments</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -54,21 +54,6 @@
             font-weight: 600;
         }
 
-        .form-control, .form-select {
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
-            padding: 0.75rem 1rem;
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
         .stats-card {
             background: linear-gradient(135deg, var(--secondary-color), #2980b9);
             color: white;
@@ -94,33 +79,33 @@
             font-weight: 500;
         }
 
-        .badge.dept-food {
+        .badge.category-food {
             background-color: #FF6B6B !important;
             color: white;
         }
-        .badge.dept-drink {
+        .badge.category-drink {
             background-color: #4ECDC4 !important;
             color: white;
         }
-        .badge.dept-fashion {
+        .badge.category-fashion {
             background-color: #9B59B6 !important;
             color: white;
         }
-        .badge.dept-tools {
+        .badge.category-tools {
             background-color: #3498DB !important;
             color: white;
         }
 
-        .badge.status-present {
-            background-color: #2ECC71 !important;
-        }
-
-        .badge.status-absent {
-            background-color: #E74C3C !important;
-        }
-
-        .badge.status-on-leave {
+        .badge.status-not-started {
             background-color: #F1C40F !important;
+        }
+
+        .badge.status-in-progress {
+            background-color: #3498DB !important;
+        }
+
+        .badge.status-finished {
+            background-color: #2ECC71 !important;
         }
 
         .table {
@@ -134,24 +119,38 @@
             padding: 1rem;
             font-weight: 600;
             color: var(--primary-color);
-            text-align: center; /* Center align header */
+            text-align: center;
             vertical-align: middle;
         }
 
         .table tbody td {
-            text-align: center; /* Center align all table cells */
+            text-align: center;
             vertical-align: middle;
             padding: 1rem;
         }
 
+        .form-select {
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            padding: 0.75rem 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-dark mb-4">
         <div class="container">
             <span class="navbar-brand">
-                <i class="fas fa-user-clock me-2"></i>
-                Attendance Management
+                <i class="fas fa-tasks me-2"></i>
+                Job Assignments
             </span>
             <div class="ms-auto">
                 <a href="/logout" class="btn btn-outline-light">
@@ -171,94 +170,48 @@
             </div>
         <?php endif; ?>
 
+        <?php if (session()->getFlashdata('error')) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <?= session()->getFlashdata('error') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
         <!-- Stats Cards -->
         <div class="row">
             <div class="col-md-4">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($attendance, function($attend) { return strtolower(str_replace(' ', '-', $attend['status'])) === 'present'; })) ?>
+                        <?= count(array_filter($job_assign, function($job) { return strtolower(str_replace(' ', '-', $job['status'])) === 'not-started'; })) ?>
                     </div>
-                    <div class="stats-label">Present Today</div>
+                    <div class="stats-label">Not Started Tasks</div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($attendance, function($attend) { return strtolower(str_replace(' ', '-', $attend['status'])) === 'absent'; })) ?>
+                        <?= count(array_filter($job_assign, function($job) { return strtolower(str_replace(' ', '-', $job['status'])) === 'in-progress'; })) ?>
                     </div>
-                    <div class="stats-label">Absent Today</div>
+                    <div class="stats-label">In Progress</div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($attendance, function($attend) { return strtolower(str_replace(' ', '-', $attend['status'])) === 'on-leave'; })) ?>
+                        <?= count(array_filter($job_assign, function($job) { return strtolower(str_replace(' ', '-', $job['status'])) === 'finished'; })) ?>
                     </div>
-                    <div class="stats-label">On Leave</div>
+                    <div class="stats-label">Completed</div>
                 </div>
             </div>
         </div>
 
-        <!-- Add Attendance Form -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5 class="card-title mb-0">
-                    <i class="fas fa-plus-circle me-2"></i>
-                    Add Attendance
-                </h5>
-            </div>
-            <div class="card-body">
-                <form action="/attendance/inputAttendance" method="post">
-                    <?= csrf_field(); ?>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">
-                                <i class="fas fa-user me-2"></i>Name
-                            </label>
-                            <input type="text" name="name" id="name" class="form-control" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">
-                                <i class="fas fa-envelope me-2"></i>Email
-                            </label>
-                            <input type="email" name="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="department" class="form-label">
-                                <i class="fas fa-building me-2"></i>Department
-                            </label>
-                            <select name="department" id="department" class="form-select" required>
-                                <option value="">Select Department</option>
-                                <option value="Food">Food</option>
-                                <option value="Drink">Drink</option>
-                                <option value="Fashion">Fashion</option>
-                                <option value="Tools">Tools</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="status" class="form-label">
-                                <i class="fas fa-toggle-on me-2"></i>Status
-                            </label>
-                            <select name="status" id="status" class="form-select" required>
-                                <option value="Present">Present</option>
-                                <option value="Absent">Absent</option>
-                                <option value="On Leave">On Leave</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-plus-circle me-2"></i>Add Attendance
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Attendance Table -->
+        <!-- Job Assignments Table -->
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">
                     <i class="fas fa-list me-2"></i>
-                    Attendance List
+                    Job Assignments List
                 </h5>
             </div>
             <div class="card-body">
@@ -266,42 +219,58 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Department</th>
+                                <th>Category</th>
+                                <th>Product</th>
                                 <th>Status</th>
-                                <th>Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($attendance)) : ?>
-                                <?php $no = 1; ?>
-                                <?php foreach ($attendance as $item) : ?>
+                            <?php if (!empty($job_assign) && is_array($job_assign)): ?>
+                                <?php foreach ($job_assign as $job): ?>
                                     <tr>
-                                        <td class="text-center"><?= $no++; ?></td>
+                                        <td><?= esc($job['id']) ?></td>
                                         <td>
                                             <i class="fas fa-user-circle me-2 text-secondary"></i>
-                                            <?= esc($item['name']); ?>
+                                            <?= esc($job['name']) ?>
                                         </td>
-                                        <td><?= esc($item['email']); ?></td>
+                                        <td><?= esc($job['email']) ?></td>
                                         <td>
-                                            <span class="badge dept-<?= strtolower($item['department']) ?>">
-                                                <?= $item['department'] ?>
+                                            <span class="badge category-<?= strtolower($job['category']) ?>">
+                                                <i class="fas fa-tag me-1"></i>
+                                                <?= esc($job['category']) ?>
                                             </span>
                                         </td>
-                                        <td class="text-center">
-                                            <span class="badge status-<?= strtolower(str_replace(' ', '-', $item['status'])) ?>">
+                                        <td><?= esc($job['product']) ?></td>
+                                        <td>
+                                            <span class="badge status-<?= strtolower(str_replace(' ', '-', $job['status'])) ?>">
                                                 <i class="fas fa-circle me-1"></i>
-                                                <?= esc($item['status']); ?>
+                                                <?= esc($job['status']) ?>
                                             </span>
                                         </td>
-                                        <td class="text-center"><?= esc(date('d-m-Y H:i', strtotime($item['created_at']))); ?></td>
+                                        <td>
+                                            <form action="<?= base_url('job_assign/updateJobAssign') ?>" method="post">
+                                                <input type="hidden" name="id_job" value="<?= esc($job['id']) ?>">
+                                                <div class="d-flex gap-2">
+                                                    <select name="updateStatus" class="form-select" required>
+                                                        <option value="Not Started" <?= $job['status'] === 'Not Started' ? 'selected' : '' ?>>Not Started</option>
+                                                        <option value="In Progress" <?= $job['status'] === 'In Progress' ? 'selected' : '' ?>>In Progress</option>
+                                                        <option value="Finished" <?= $job['status'] === 'Finished' ? 'selected' : '' ?>>Finished</option>
+                                                    </select>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="fas fa-sync-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
-                            <?php else : ?>
+                            <?php else: ?>
                                 <tr>
-                                    <td colspan="6" class="text-center">No attendance records found</td>
+                                    <td colspan="7" class="text-center">No job assignments available</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>

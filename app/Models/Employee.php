@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class Employee extends Model
 {
-    protected $table = 'employee';
+    protected $table = 'employees';
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'name', 'email', 'phone', 'department', 'status', 'hire_date', 'role', 

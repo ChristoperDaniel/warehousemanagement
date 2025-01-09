@@ -38,3 +38,5 @@ $routes->post('/job/deleteJob', 'JobController::deleteJob');
 
 $routes->get('/attendance', 'AttendanceController::index');
 $routes->post('/attendance/inputAttendance', 'AttendanceController::inputAttendance');
+$routes->get('/job_assign', 'JobAssignController::index');
+$routes->post('/job_assign/updateJobAssign', 'JobAssignController::updateJobAssign');

@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class Attendance extends Model
 {
-    protected $table            = 'attendance';
+    protected $table            = 'attendances';
     protected $primaryKey       = 'id';
     protected $allowedFields    = [
         'name', 'email', 'department', 'status'

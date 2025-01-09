@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class Job extends Model
 {
-    protected $table            = 'job';
+    protected $table            = 'jobs';
     protected $primaryKey       = 'id';
     protected $allowedFields    = [
         'name', 'email', 'category', 'product', 'status'

@@ -380,7 +380,7 @@
                                 <?php endforeach; ?>
                             <?php else : ?>
                                 <tr>
-                                    <td colspan="6" class="text-center">No jobs available</td>
+                                    <td colspan="7" class="text-center">No jobs available</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
