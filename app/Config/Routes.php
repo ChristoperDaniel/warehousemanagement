@@ -31,6 +31,8 @@ $routes->get('/loginUserProduct', 'LoginProductController::index');
 $routes->get('/logoutUserProduct', 'LoginProductController::logout');
 $routes->post('/login_action_user', 'LoginProductController::login_action_user');
 
+$routes->get('/productFeature', 'ProductFeatureController::index');
+
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/staff', 'Staff::index');
 

@@ -95,6 +95,12 @@
             width: 80px;
             margin-right: 5px;
         }
+        .btn-logout {
+            background-color: rgb(204, 46, 46);
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
     </style>
     
     <script>
@@ -163,5 +169,12 @@
         </tr>
         <?php endforeach; ?>
     </table>
+
+    <div style="text-align: right; margin-top: 20px;">
+        <a href="/logoutUserProduct" class="btn btn-logout">
+            <span>Logout</span>
+        </a>
+    </div>
+    
 </body>
 </html>

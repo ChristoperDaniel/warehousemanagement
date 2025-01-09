@@ -87,6 +87,12 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+        .btn-logout {
+            background-color: rgb(204, 46, 46);
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body>
@@ -97,10 +103,10 @@
             <label for="category">Select Category/Department:</label>
             <select id="category" name="category">
                 <option value="">Select Category</option>
-                <option value="Electronics">Electronics</option>
                 <option value="Food">Food</option>
-                <option value="Clothing">Clothing</option>
-                <option value="IT">IT</option>
+                <option value="Drink">Drink</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Tools">Tools</option>
                 <!-- Add more categories as needed -->
             </select>
         </div>
@@ -162,5 +168,11 @@
                 });
         }
     </script>
+
+    <div style="text-align: right; margin-top: 20px;">
+        <a href="/logoutUserProduct" class="btn btn-logout">
+            <span>Logout</span>
+        </a>
+    </div>
 </body>
 </html>

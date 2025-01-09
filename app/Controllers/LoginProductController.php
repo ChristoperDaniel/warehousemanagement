@@ -13,7 +13,7 @@ class LoginProductController extends BaseController{
         $cek = $model->getDataUserProduct($email, $password);
         if ($cek == 1){
             session()->set('num_user', $cek);
-            return redirect()->to('/');
+            return redirect()->to('/productFeature');
         } else {
             return redirect()->to('/loginUserProduct');
         }

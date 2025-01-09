@@ -8,9 +8,6 @@ class ProductController extends BaseController {
     // Menampilkan data
     public function index()
     {
-        if (session()->get('num_user') == '') {
-            return redirect()->to('/loginUserProduct');
-        }
         $model = new Product(); //bikin instance dari model product
         $data['product'] = $model->getDataProduct();  //ambil data dari model
         return view('product', $data); //kirim data ke view
