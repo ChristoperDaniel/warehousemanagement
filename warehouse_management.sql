@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2025 at 02:42 PM
+-- Generation Time: Jan 09, 2025 at 05:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,9 +56,9 @@ CREATE TABLE `employees` (
   `email` varchar(150) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
   `department` varchar(100) DEFAULT NULL,
-  `status` enum('active','inactive','on_leave') NOT NULL,
+  `status` enum('active','inactive','on leave') NOT NULL,
   `hire_date` date DEFAULT NULL,
-  `role` varchar(255) DEFAULT NULL,
+  `job_title` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -67,8 +67,8 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `name`, `email`, `phone`, `department`, `status`, `hire_date`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Anne', 'anne@gmail.com', '081211112222', 'Food', 'active', '2025-01-07', 'Staff', '2025-01-07 02:18:25', '2025-01-09 13:01:18');
+INSERT INTO `employees` (`id`, `name`, `email`, `phone`, `department`, `status`, `hire_date`, `job_title`, `created_at`, `updated_at`) VALUES
+(1, 'Anne', 'anne@gmail.com', '081211112222', 'Food', 'active', '2025-01-07', 'Staff', '2025-01-09 16:25:13', '2025-01-09 16:25:13');
 
 -- --------------------------------------------------------
 
