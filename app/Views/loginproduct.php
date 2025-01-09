@@ -57,6 +57,11 @@
         .btn-login {
             background-color: #3498db;
         }
+
+        .btn-home {
+            background-color:rgb(4, 255, 155);
+        }
+
         .btn:hover {
             opacity: 0.8;
         }
@@ -102,6 +107,12 @@
             
             <button type="submit" class="btn btn-login">Login</button>
         </form>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/" class="btn btn-home">
+            <span>Home</span>
+        </a>
     </div>
 
     <script>

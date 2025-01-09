@@ -95,11 +95,12 @@
             width: 80px;
             margin-right: 5px;
         }
+        .btn-feature {
+            background-color:rgb(13, 116, 56);
+        }
         .btn-logout {
             background-color: rgb(204, 46, 46);
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
         }
     </style>
     
@@ -177,6 +178,12 @@
         </tr>
         <?php endforeach; ?>
     </table>
+    
+    <div style="text-align: right; margin-top: 20px;">
+        <a href="/productFeature" class="btn btn-feature">
+            <span>Feature</span>
+        </a>
+    </div>
 
     <div style="text-align: right; margin-top: 20px;">
         <a href="/logoutUserProduct" class="btn btn-logout">
