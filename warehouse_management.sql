@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2025 at 05:25 PM
+-- Generation Time: Jan 09, 2025 at 05:56 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -58,7 +58,7 @@ CREATE TABLE `employees` (
   `department` varchar(100) DEFAULT NULL,
   `status` enum('active','inactive','on leave') NOT NULL,
   `hire_date` date DEFAULT NULL,
-  `job_title` varchar(100) DEFAULT NULL,
+  `role` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -67,8 +67,8 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `name`, `email`, `phone`, `department`, `status`, `hire_date`, `job_title`, `created_at`, `updated_at`) VALUES
-(1, 'Anne', 'anne@gmail.com', '081211112222', 'Food', 'active', '2025-01-07', 'Staff', '2025-01-09 16:25:13', '2025-01-09 16:25:13');
+INSERT INTO `employees` (`id`, `name`, `email`, `phone`, `department`, `status`, `hire_date`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'Anne', 'anne@gmail.com', '081211112222', 'Food', 'active', '2025-01-07', 'Staff', '2025-01-09 16:55:52', '2025-01-09 16:55:52');
 
 -- --------------------------------------------------------
 
@@ -181,7 +181,8 @@ ALTER TABLE `attendances`
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`,`email`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `jobs`
