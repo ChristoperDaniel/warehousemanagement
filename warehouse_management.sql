@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2025 at 10:47 AM
+-- Generation Time: Jan 09, 2025 at 02:42 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -37,6 +37,13 @@ CREATE TABLE `attendances` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `attendances`
+--
+
+INSERT INTO `attendances` (`id`, `name`, `email`, `department`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Kayne', 'kayne@gmail.com', 'Food', 'present', '2025-01-09 13:11:45', '2025-01-09 13:11:45');
+
 -- --------------------------------------------------------
 
 --
@@ -61,7 +68,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `name`, `email`, `phone`, `department`, `status`, `hire_date`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Samuel', 'samuel@gmail.com', '081211112222', 'Food', 'active', '2025-01-07', 'Staff', '2025-01-07 02:18:25', '2025-01-07 02:18:25');
+(1, 'Anne', 'anne@gmail.com', '081211112222', 'Food', 'active', '2025-01-07', 'Staff', '2025-01-07 02:18:25', '2025-01-09 13:01:18');
 
 -- --------------------------------------------------------
 
@@ -79,6 +86,14 @@ CREATE TABLE `jobs` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `name`, `email`, `category`, `product`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Kayne', 'kayne@gmail.com', 'Drink', 'Milk', 'in progress', '2025-01-09 13:12:34', '2025-01-09 13:12:34'),
+(2, 'Jason', 'jason@gmail.com', 'Food', 'Frozen', 'finished', '2025-01-09 13:13:27', '2025-01-09 13:13:27');
 
 -- --------------------------------------------------------
 
@@ -102,7 +117,8 @@ INSERT INTO `product_list` (`id_product`, `name_product`, `category_product`, `q
 (8, 'Meat', 'Food', 20, 'No'),
 (9, 'Milk', 'Drink', 10, 'No'),
 (10, 'Mineral Water', 'Drink', 20, 'No'),
-(11, 'Cheetos', 'Food', 50, 'No');
+(11, 'Cheetos', 'Food', 50, 'No'),
+(12, 'Rice', 'Food', 30, 'No');
 
 -- --------------------------------------------------------
 
@@ -122,7 +138,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `name`, `password`, `role`) VALUES
-('admin_claire', 'Claire', '182e500f562c7b95a2ae0b4dd9f47bb2', 'Admin');
+('admin_claire', 'Claire', '182e500f562c7b95a2ae0b4dd9f47bb2', 'Admin'),
+('manager_steve', 'Steve', 'd69403e2673e611d4cbd3fad6fd1788e', 'Manager'),
+('staff_anne', 'Anne', 'e3fb62ebfa4f36acf5cbff6a6ed0f2e0', 'Staff'),
+('staff_jason', 'Jason', '2b877b4b825b48a9a0950dd5bd1f264d', 'Staff'),
+('staff_kayne', 'Kayne', '0d2504ac0dbec706e7a564f5c5b15700', 'Staff');
 
 -- --------------------------------------------------------
 
@@ -196,7 +216,7 @@ ALTER TABLE `users_product`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -208,13 +228,13 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
