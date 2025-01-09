@@ -153,7 +153,6 @@
             <th>Name</th>
             <th>Category</th>
             <th>Quantity</th>
-            <th>Restock</th>
             <th>Actions</th>
         </tr>
         <?php foreach ($product as $product_item): ?>
@@ -170,7 +169,6 @@
                     <button type="button" class="btn btn-cancel" onclick="cancelEdit(<?= $product_item['id_product'] ?>)">Cancel</button>
                 </form>
             </td>
-            <td><?= $product_item['restock_product'] ?></td>
             <td>
                 <button class="btn btn-edit" onclick="showEditForm(<?= $product_item['id_product'] ?>)">Edit</button>
                 <a href="<?= base_url('/product/deleteProduct/' . $product_item['id_product']) ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-delete">Delete</a>
