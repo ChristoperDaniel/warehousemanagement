@@ -128,8 +128,16 @@
         <label for="name_product">Name Product:</label>
         <input type="text" name="name_product" id="name_product" required>
         <br>
+        <!-- <label for="category_product">Category Product:</label>
+        <input type="text" name="category_product" id="category_product" required> -->
         <label for="category_product">Category Product:</label>
-        <input type="text" name="category_product" id="category_product" required>
+        <select name="category_product" id="category_product" required style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; background-color: white;">
+            <option value="">Select Category</option>
+            <option value="Food">Food</option>
+            <option value="Drink">Drink</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Tools">Tools</option>
+        </select>
         <br>
         <label for="quantity_product">Quantity Product:</label>
         <input type="number" name="quantity_product" id="quantity_product" required>
