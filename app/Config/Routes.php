@@ -26,3 +26,15 @@ $routes->post('/login_action', 'LoginController::login_action');
 
 $routes->get('/filter/productemployee', 'ProductEmployeeFilterController::filterByCategory');
 $routes->get('/product-employee-filter', 'ProductEmployeeFilterController::index');
+
+$routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/staff', 'Staff::index');
+
+$routes->get('/job', 'JobController::index');
+$routes->get('/job/getJobOnly', 'JobController::getJobOnly');
+$routes->post('/job/inputJob', 'JobController::inputJob');
+$routes->post('/job/updateJob', 'JobController::updateJob');
+$routes->post('/job/deleteJob', 'JobController::deleteJob');
+
+$routes->get('/attendance', 'AttendanceController::index');
+$routes->post('/attendance/inputAttendance', 'AttendanceController::inputAttendance');

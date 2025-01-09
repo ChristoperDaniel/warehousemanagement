@@ -8,8 +8,11 @@ class EmployeeController extends BaseController
 {
     public function index()
     {
-        if (session()->get('num_user') == '') {
-            return redirect()->to('/login');
+        $username = session()->get('username');
+        $role = session()->get('role');
+
+        if (!$username || ($role !== 'Admin' && $role !== 'Manager')) {
+            return redirect()->to('/login')->with('error', 'Unauthorized access');
         }
         $model = new Employee();
         $data['employee'] = $model->getDataEmployee();
@@ -43,7 +46,6 @@ class EmployeeController extends BaseController
             return redirect()->back()->with('error', 'Email already exists');
         }
 
-        // Jika validasi berhasil, masukkan data ke database
         try {
             $model->addEmployee([
                 'name' => $name,
@@ -55,25 +57,10 @@ class EmployeeController extends BaseController
                 'role' => $role,
             ]);
 
-            // Redirect kembali ke halaman utama dengan pesan sukses
             return redirect()->to('/employee')->with('message', 'Employee added successfully');
         } catch (\Exception $e) {
-            // Tangani jika terjadi error saat penyimpanan data
             return redirect()->back()->with('error', 'Failed to add employee: ' . $e->getMessage());
         }
-        // $model = new Employee();
-        // $model->addEmployee([
-        //     'name' => $name,
-        //     'email' => $email,
-        //     'phone' => $phone,
-        //     'department' => $department,
-        //     'status' => $status,
-        //     'hire_date' => $hire_date,
-        //     'role' => $role,
-        // ]);
-        
-        // // Redirect kembali ke halaman utama
-        // return redirect()->to('/employee')->with('message', 'Employee added successfully');
     }
 
     public function updateEmployee()

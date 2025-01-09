@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\Models\Login;
 class LoginController extends BaseController {
+
     public function index()
     {
         return view('login');
@@ -12,12 +13,22 @@ class LoginController extends BaseController {
         $model = model(Login::class);
         $username = $this->request->getPost('username');
         $password = md5($this->request->getPost('password'));
+
         $cek = $model->getDataUsers($username, $password);
-        if ($cek == 1){
-            session()->set('num_user', $cek);
-            return redirect()->to('/employee');
+
+        if ($cek) {
+            session()->set([
+                'username' => $username,
+                'role' => $cek->role,
+            ]);
+            
+            if ($cek->role == "Staff") {
+                return redirect()->to('/staff');
+            } else if ($cek->role == "Manager" || $cek->role == "Admin"){
+                return redirect()->to('/dashboard');
+            }
         } else {
-            return redirect()->to('/login');
+            return redirect()->to('/login')->with('error', 'Wrong username or password');
         }
     }
 

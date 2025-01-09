@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Management System</title>
+    <title>Job Assignment</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -24,7 +24,7 @@
             padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
+        
         .navbar-brand {
             color: white !important;
             font-weight: 600;
@@ -89,65 +89,52 @@
             padding: 1rem;
             font-weight: 600;
             color: var(--primary-color);
-            text-align: center; /* Center align header */
+            text-align: center;
             vertical-align: middle;
         }
+
         .table tbody td {
-            text-align: center; /* Center align all table cells */
+            text-align: center;
             vertical-align: middle;
             padding: 1rem;
-        }
-
-        /* Department Badge Colors */
-        .badge.dept-food {
-            background-color: #FF6B6B !important;
-            color: white;
-        }
-        .badge.dept-drink {
-            background-color: #4ECDC4 !important;
-            color: white;
-        }
-        .badge.dept-fashion {
-            background-color: #9B59B6 !important;
-            color: white;
-        }
-        .badge.dept-tools {
-            background-color: #3498DB !important;
-            color: white;
-        }
-
-        /* Status Badge Colors */
-        .badge.status-active {
-            background-color: #2ECC71 !important;
-            color: white;
-        }
-        .badge.status-on-leave {
-            background-color: #F1C40F !important;
-            color: white;
-        }
-        .badge.status-inactive {
-            background-color: #E74C3C !important;
-            color: white;
-        }
-
-        /* Role Badge Colors */
-        .badge.role-manager {
-            background-color: #8E44AD !important;
-            color: white;
-        }
-        .badge.role-admin {
-            background-color: #2C3E50 !important;
-            color: white;
-        }
-        .badge.role-staff {
-            background-color: #16A085 !important;
-            color: white;
         }
 
         .badge {
             padding: 0.5rem 1rem;
             border-radius: 6px;
             font-weight: 500;
+        }
+
+        .badge.cat-food {
+            background-color: #FF6B6B !important;
+            color: white;
+        }
+        .badge.cat-drink {
+            background-color: #4ECDC4 !important;
+            color: white;
+        }
+        .badge.cat-fashion {
+            background-color: #9B59B6 !important;
+            color: white;
+        }
+        .badge.cat-tools {
+            background-color: #3498DB !important;
+            color: white;
+        }
+
+        .badge.status-not-started {
+            background-color: #F1C40F !important;
+            color: white;
+        }
+
+        .badge.status-in-progress {
+            background-color: #3498DB !important;
+            color: white;
+        }
+
+        .badge.status-finished {
+            background-color: #2ECC71 !important;
+            color: white;
         }
 
         .stats-card {
@@ -175,8 +162,8 @@
     <nav class="navbar navbar-dark mb-4">
         <div class="container">
             <span class="navbar-brand">
-                <i class="fas fa-users me-2"></i>
-                Employee Information
+                <i class="fas fa-tasks me-2"></i>
+                Job Assignment
             </span>
             <div class="ms-auto">
                 <a href="/logout" class="btn btn-outline-light">
@@ -189,7 +176,7 @@
 
     <div class="container">
         <!-- Flash Messages -->
-        <?php if (session()->getFlashdata('message')): ?>
+        <?php if (session()->getFlashdata('message')) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="fas fa-check-circle me-2"></i>
                 <?= session()->getFlashdata('message') ?>
@@ -197,7 +184,7 @@
             </div>
         <?php endif; ?>
         
-        <?php if (session()->getFlashdata('error')): ?>
+        <?php if (session()->getFlashdata('error')) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i class="fas fa-exclamation-circle me-2"></i>
                 <?= session()->getFlashdata('error') ?>
@@ -209,46 +196,48 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="stats-card">
-                    <div class="stats-number"><?= count($employee) ?></div>
-                    <div class="stats-label">Total Employees</div>
+                    <div class="stats-number">
+                        <?= count($job) ?>
+                    </div>
+                    <div class="stats-label">Total Jobs</div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($employee, function($emp) { return strtolower(str_replace(' ', '-', $emp['status'])) === 'active'; })) ?>
+                        <?= count(array_filter($job, function($j) { return strtolower(str_replace(' ', '-', $j['status'])) === 'not-started'; })) ?>
                     </div>
-                    <div class="stats-label">Active Employees</div>
+                    <div class="stats-label">Not Started</div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($employee, function($emp) { return strtolower(str_replace(' ', '-', $emp['status'])) === 'on-leave'; })) ?>
+                        <?= count(array_filter($job, function($j) { return strtolower(str_replace(' ', '-', $j['status'])) === 'in-progress'; })) ?>
                     </div>
-                    <div class="stats-label">On Leave</div>
+                    <div class="stats-label">In Progress</div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
                     <div class="stats-number">
-                        <?= count(array_filter($employee, function($emp) { return strtolower(str_replace(' ', '-', $emp['status'])) === 'inactive'; })) ?>
+                        <?= count(array_filter($job, function($j) { return strtolower(str_replace(' ', '-', $j['status'])) === 'finished'; })) ?>
                     </div>
-                    <div class="stats-label">Inactive</div>
+                    <div class="stats-label">Completed</div>
                 </div>
             </div>
         </div>
 
-        <!-- Add Employee Form -->
+        <!-- Add Job Form -->
         <div class="card mb-4">
             <div class="card-header">
                 <h5 class="card-title mb-0">
-                    <i class="fas fa-user-plus me-2"></i>
-                    Add New Employee
+                    <i class="fas fa-plus-circle me-2"></i>
+                    Add New Job
                 </h5>
             </div>
             <div class="card-body">
-                <form action="<?= base_url('employee/inputDataEmployee') ?>" method="post">
+                <form action="/job/inputJob" method="post">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="name" class="form-label">
@@ -263,64 +252,35 @@
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="phone" class="form-label">
-                                <i class="fas fa-phone me-2"></i>Phone
+                            <label for="product" class="form-label">
+                                <i class="fas fa-box me-2"></i>Product
                             </label>
-                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                            <input type="text" class="form-control" id="product" name="product" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="department" class="form-label">
-                                <i class="fas fa-building me-2"></i>Department
-                            </label>
-                            <select class="form-select" id="department" name="department" required>
-                                <option value="">Select Department</option>
-                                <option value="Food">Food</option>
-                                <option value="Drink">Drink</option>
-                                <option value="Fashion">Fashion</option>
-                                <option value="Tools">Tools</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
                             <label for="status" class="form-label">
                                 <i class="fas fa-toggle-on me-2"></i>Status
                             </label>
                             <select class="form-select" id="status" name="status" required>
-                                <option value="Active">Active</option>
-                                <option value="On Leave">On Leave</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="hire_date" class="form-label">
-                                <i class="fas fa-calendar me-2"></i>Hire Date
-                            </label>
-                            <input type="date" class="form-control" id="hire_date" name="hire_date" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="role" class="form-label">
-                                <i class="fas fa-briefcase me-2"></i>Role
-                            </label>
-                            <select class="form-select" id="role" name="role" required>
-                                <option value="">Select Role</option>
-                                <option value="Manager">Manager</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Staff">Staff</option>
+                                <option value="Not Started">Not Started</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Finished">Finished</option>
                             </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-plus-circle me-2"></i>Add Employee
+                        <i class="fas fa-plus-circle me-2"></i>Add Job
                     </button>
                 </form>
             </div>
         </div>
 
-        <!-- Employee List -->
+        <!-- Job List -->
         <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-header">
                 <h5 class="card-title mb-0">
                     <i class="fas fa-list me-2"></i>
-                    Employee List
+                    Job List
                 </h5>
             </div>
             <div class="card-body">
@@ -331,51 +291,43 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Department</th>
+                                <th>Category</th>
+                                <th>Product</th>
                                 <th>Status</th>
-                                <th>Hire Date</th>
-                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($employee)): ?>
-                                <?php foreach ($employee as $index => $emp) : ?>
+                            <?php if (!empty($job)) : ?>
+                                <?php foreach ($job as $index => $item) : ?>
                                     <tr>
                                         <td><?= $index + 1; ?></td>
                                         <td>
                                             <i class="fas fa-user-circle me-2 text-secondary"></i>
-                                            <?= $emp['name'] ?>
+                                            <?= $item['name']; ?>
                                         </td>
-                                        <td><?= $emp['email'] ?></td>
-                                        <td><?= $emp['phone'] ?></td>
+                                        <td><?= $item['email']; ?></td>
                                         <td>
-                                            <span class="badge dept-<?= strtolower($emp['department']) ?>">
-                                                <?= $emp['department'] ?>
+                                            <span class="badge cat-<?= strtolower($item['category']) ?>">
+                                                <?= $item['category'] ?>
                                             </span>
                                         </td>
+                                        <td><?= $item['product']; ?></td>
                                         <td>
-                                            <span class="badge status-<?= strtolower(str_replace(' ', '-', $emp['status'])) ?>">
+                                            <span class="badge status-<?= strtolower(str_replace(' ', '-', $item['status'])) ?>">
                                                 <i class="fas fa-circle me-1"></i>
-                                                <?= $emp['status'] ?>
-                                            </span>
-                                        </td>
-                                        <td><?= $emp['hire_date'] ?></td>
-                                        <td>
-                                            <span class="badge role-<?= strtolower($emp['role']) ?>">
-                                                <?= $emp['role'] ?>
+                                                <?= $item['status']; ?>
                                             </span>
                                         </td>
                                         <td>
                                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#updateModal<?= $emp['id']; ?>">
+                                                    data-bs-target="#updateModal<?= $item['id']; ?>">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <form action="/employee/deleteEmployee" method="post" style="display:inline-block;">
-                                                <input type="hidden" name="id" value="<?= $emp['id']; ?>">
+                                            <form action="/job/deleteJob" method="post" style="display:inline-block;">
+                                                <input type="hidden" name="id" value="<?= $item['id']; ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Are you sure want to delete this employee?')">
+                                                        onclick="return confirm('Are you sure want to delete this job?')">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
@@ -383,29 +335,36 @@
                                     </tr>
 
                                     <!-- Update Modal -->
-                                    <div class="modal fade" id="updateModal<?= $emp['id']; ?>" tabindex="-1">
+                                    <div class="modal fade" id="updateModal<?= $item['id']; ?>" tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form action="/employee/updateEmployee" method="post">
+                                                <form action="/job/updateJob" method="post">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Update Employee</h5>
+                                                        <h5 class="modal-title">Update Job</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <input type="hidden" name="id_employee" value="<?= $emp['id']; ?>">
+                                                        <input type="hidden" name="id_job" value="<?= $item['id']; ?>">
+                                                        <div class="mb-3">
+                                                            <label for="updateProduct" class="form-label">
+                                                                <i class="fas fa-box me-2"></i>Product
+                                                            </label>
+                                                            <input type="text" class="form-control" id="updateProduct" 
+                                                                   name="updateProduct" value="<?= $item['product']; ?>" required>
+                                                        </div>
                                                         <div class="mb-3">
                                                             <label for="updateStatus" class="form-label">
                                                                 <i class="fas fa-toggle-on me-2"></i>Status
                                                             </label>
                                                             <select class="form-select" id="updateStatus" name="updateStatus" required>
-                                                                <option value="Active" <?= $emp['status'] === 'Active' ? 'selected' : ''; ?>>
-                                                                    Active
+                                                                <option value="Not Started" <?= $item['status'] === 'Not Started' ? 'selected' : ''; ?>>
+                                                                    Not Started
                                                                 </option>
-                                                                <option value="On Leave" <?= $emp['status'] === 'On Leave' ? 'selected' : ''; ?>>
-                                                                    On Leave
+                                                                <option value="In Progress" <?= $item['status'] === 'In Progress' ? 'selected' : ''; ?>>
+                                                                    In Progress
                                                                 </option>
-                                                                <option value="Inactive" <?= $emp['status'] === 'Inactive' ? 'selected' : ''; ?>>
-                                                                    Inactive
+                                                                <option value="Finished" <?= $item['status'] === 'Finished' ? 'selected' : ''; ?>>
+                                                                    Finished
                                                                 </option>
                                                             </select>
                                                         </div>

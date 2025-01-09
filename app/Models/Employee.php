@@ -11,7 +11,7 @@ class Employee extends Model
     protected $allowedFields = [
         'name', 'email', 'phone', 'department', 'status', 'hire_date', 'role', 
     ];
-    protected $useTimestamps = true; // Untuk created_at dan updated_at otomatis
+    protected $useTimestamps = true;
 
     public function getDataEmployee() {
         return $this->findAll();
@@ -21,13 +21,16 @@ class Employee extends Model
         return $this-> insert($input);
     }
 
-    public function deleteDataEmployee(array $id_employee) {
+    public function deleteDataEmployee(String $id_employee) {
         return $this->delete($id_employee);
     }
 
-    public function updateDataEmployee(array $id_employee, String $status) {
-        return $this->whereIn('id', $id_employee)
-                    ->set(['status' => $status])
-                    ->update();
+    public function updateDataEmployee(String $id_employee, String $status) {
+        return $this->update($id_employee, ['status' => $status]);
+    }
+
+    public function getEmployeeByEmail($email) {
+        $user = $this->where('email', $email)->first();
+        return $user ? $user['department'] : null;
     }
 }
