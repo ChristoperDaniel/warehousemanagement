@@ -32,7 +32,7 @@ $routes->get('/logoutUserProduct', 'LoginProductController::logout');
 $routes->post('/login_action_user', 'LoginProductController::login_action_user');
 
 $routes->get('/productFeature', 'ProductFeatureController::index');
-
+$routes->get('/employeePage', 'EmployeePageController::index');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/staff', 'Staff::index');
 
@@ -46,3 +46,6 @@ $routes->get('/attendance', 'AttendanceController::index');
 $routes->post('/attendance/inputAttendance', 'AttendanceController::inputAttendance');
 $routes->get('/job_assign', 'JobAssignController::index');
 $routes->post('/job_assign/updateJobAssign', 'JobAssignController::updateJobAssign');
+
+$routes->get('/check_stock', 'CheckController::index'); // Load the Check Stock page
+$routes->get('/check/restock', 'CheckController::restock'); // API endpoint for restock check
