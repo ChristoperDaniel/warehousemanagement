@@ -27,6 +27,10 @@ $routes->post('/login_action', 'LoginController::login_action');
 $routes->get('/filter/productemployee', 'ProductEmployeeFilterController::filterByCategory');
 $routes->get('/product-employee-filter', 'ProductEmployeeFilterController::index');
 
+$routes->get('/loginUserProduct', 'LoginProductController::index');
+$routes->get('/logoutUserProduct', 'LoginProductController::logout');
+$routes->post('/login_action_user', 'LoginProductController::login_action_user');
+
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/staff', 'Staff::index');
 

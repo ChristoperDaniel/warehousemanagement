@@ -9,6 +9,9 @@ class ProductEmployeeFilterController extends ResourceController
 {
     public function index()
     {
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/loginUserProduct');
+        }
         return view('product_employee_filter');
     }
     
