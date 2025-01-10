@@ -10,9 +10,9 @@ $routes->get('/', 'Home::index');
 $routes->get('/product', 'ProductController::index');
 $routes->get('/product/getDataProductOnly', 'ProductController::getDataProductOnly');
 $routes->post('/product/addProduct', 'ProductController::addProduct');
-$routes->post('/product/updateQuantityProduct/(:num)', 'productController::updateQuantityProduct/$1');
-$routes->post('/product/updateRestockStatus/(:num)', 'productController::updateRestockStatus/$1');
-$routes->get('/product/deleteProduct/(:num)', 'productController::deleteProduct/$1');
+$routes->post('/product/updateQuantityProduct/(:num)', 'ProductController::updateQuantityProduct/$1');
+$routes->post('/product/updateRestockStatus/(:num)', 'ProductController::updateRestockStatus/$1');
+$routes->get('/product/deleteProduct/(:num)', 'ProductController::deleteProduct/$1');
 
 $routes->get('/employee', 'EmployeeController::index');
 $routes->get('/employee/getDataEmployeeOnly', 'EmployeeController::getDataEmployeeOnly');
