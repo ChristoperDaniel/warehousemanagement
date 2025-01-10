@@ -4,6 +4,11 @@
 ## Description
 This system is used as a center for stock management and employees/staff management working in a warehouse.
 
+## Requirement
+- XAMPP
+- CodeIgniter 4
+- PHP
+  
 ## System Description for Product List Management
 The use case of the system designed is warehouse stock management (subdomain: Product List Management). This subdomain focuses on recording stock to ensure the availability of every product in the warehouse. Before employees can access the product management system, they must authenticate themselves (subdomain: Authentication) by entering their email and password. However, the system does not provide a sign-up feature (creating new accounts) because it cannot be accessed by unauthorized users. Accounts are manually registered into the database by someone who has access to it.
 
@@ -19,11 +24,6 @@ Admins or managers have full access to the Employee Information, Attendance, and
 Attendance provides a feature for employees to mark their attendance by filling in their name, email, department, and status. Attendance can be accessed by all roles with the same interface, and the attendance statuses are present, absent, and on leave. The Job Assignment interface differs for the three roles. Admins/Managers can assign tasks to employees by filling in the name, email, product name, and task status. The task status options are not started, in progress, and finished. In this sub-subdomain, admins/managers can update the product name and task status and delete assignments for specific employees.
 
 Unlike the interface for admins/managers, staff can only view the assignments created by admins/managers and update their task status. This separation helps maintain data security and ensures that users can only access features according to their roles. User authentication is conducted using a username and password provided by the company. Users cannot register new accounts to prevent unauthorized access to confidential data. This system is designed for integration with other subdomains, such as Inventory Management, Product Management, or Shipping Management, providing an overall view of warehouse operations.
-
-## Requirement
-- XAMPP
-- CodeIgniter 4
-- PHP
 
 ## How to Run via Localhost
 - Clone this repository in htdocs inside the XAMPP folder (/Applications/XAMPP/htdocs)
