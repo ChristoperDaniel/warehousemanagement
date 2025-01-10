@@ -161,10 +161,10 @@
     <!-- Navbar -->
     <nav class="navbar navbar-dark mb-4">
         <div class="container">
-            <span class="navbar-brand">
+            <a href="/dashboard" class="navbar-brand text-decoration-none">
                 <i class="fas fa-tasks me-2"></i>
                 Job Assignment
-            </span>
+            </a>
             <div class="ms-auto">
                 <a href="/logout" class="btn btn-outline-light">
                     <i class="fas fa-sign-out-alt me-2"></i>

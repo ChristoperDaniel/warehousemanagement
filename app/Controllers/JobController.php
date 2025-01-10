@@ -42,7 +42,6 @@ class JobController extends BaseController
 
         $model = new Job();
 
-        // Jika validasi berhasil, masukkan data ke database
         try {
             $model->addJob([
                 'name' => $name,
@@ -52,10 +51,8 @@ class JobController extends BaseController
                 'status' => $status,
             ]);
 
-            // Redirect kembali ke halaman utama dengan pesan sukses
             return redirect()->to('/job')->with('message', 'Job added successfully');
         } catch (\Exception $e) {
-            // Tangani jika terjadi error saat penyimpanan data
             return redirect()->back()->with('error', 'Failed to add job: ' . $e->getMessage());
         }
     }

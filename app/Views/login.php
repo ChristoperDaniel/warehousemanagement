@@ -101,8 +101,10 @@
 <body>
     <div class="login-container">
         <div class="login-header">
-            <h2>Welcome</h2>
-            <p>Please sign in to your account</p>
+            <div class="login-header">
+                <h2><a href="/" style="text-decoration: none; color: inherit;">Welcome</a></h2>
+                <p>Please sign in to your account</p>
+            </div>
         </div>
         
         <form action="/login_action" method="POST" autocomplete="off">
